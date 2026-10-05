@@ -1,0 +1,1052 @@
+{
+ "namespace": "essence",
+ "essences": {
+  "dark": {
+   "name": "Dark Essence",
+   "colour": "#4a3a6b",
+   "hint": "Shadow, concealment, the space between things.",
+   "onAwaken": {
+    "effects": [
+     [
+      "NIGHT_VISION",
+      6000,
+      0
+     ],
+     [
+      "RESISTANCE",
+      200,
+      0
+     ]
+    ]
+   }
+  },
+  "sin": {
+   "name": "Sin Essence",
+   "colour": "#8a1f3d",
+   "hint": "Appetite, transgression, taking what is not offered.",
+   "onAwaken": {
+    "effects": [
+     [
+      "STRENGTH",
+      400,
+      0
+     ]
+    ]
+   }
+  },
+  "blood": {
+   "name": "Blood Essence",
+   "colour": "#a01b1b",
+   "hint": "Vitality, sacrifice, the price paid in flesh.",
+   "onAwaken": {
+    "effects": [
+     [
+      "REGENERATION",
+      300,
+      0
+     ]
+    ]
+   }
+  },
+  "doom": {
+   "name": "Doom Essence",
+   "colour": "#7b2ff7",
+   "confluence": true,
+   "hint": "The confluence of dark, sin and blood. What ends things.",
+   "onAwaken": {
+    "effects": [
+     [
+      "ABSORPTION",
+      1200,
+      2
+     ],
+     [
+      "STRENGTH",
+      600,
+      1
+     ]
+    ]
+   }
+  }
+ },
+ "abilities": {
+  "shadow_meld": {
+   "id": "shadow_meld",
+   "name": "Shadow Meld",
+   "kind": "passive",
+   "desc": "While sneaking you are near-invisible and harder to hit.",
+   "onHurt": {
+    "cancel_chance": 0.25
+   },
+   "essence": "dark"
+  },
+  "predator": {
+   "id": "predator",
+   "name": "Predator's Eye",
+   "kind": "passive",
+   "desc": "You deal more damage to enemies below half health.",
+   "onHit": {
+    "low_health_bonus": 2.0
+   },
+   "essence": "sin"
+  },
+  "crimson_vitality": {
+   "id": "crimson_vitality",
+   "name": "Crimson Vitality",
+   "kind": "passive",
+   "desc": "Your blood runs hot. Maximum health increases.",
+   "attrs": {
+    "MAX_HEALTH": 8.0
+   },
+   "essence": "blood"
+  },
+  "iron_hide": {
+   "id": "iron_hide",
+   "name": "Iron Hide",
+   "kind": "passive",
+   "desc": "Your skin thickens with sin. Flat damage reduction.",
+   "onHurt": {
+    "flat_reduction": 1.5
+   },
+   "essence": "sin"
+  },
+  "void_touched": {
+   "id": "void_touched",
+   "name": "Void-Touched",
+   "kind": "passive",
+   "desc": "The dark feeds you. Killing restores health.",
+   "onKill": {
+    "heal": 4.0
+   },
+   "essence": "dark"
+  },
+  "bloodthirst": {
+   "id": "bloodthirst",
+   "name": "Bloodthirst",
+   "kind": "passive",
+   "desc": "Wounds you open feed you. Hitting steals a little health.",
+   "onHit": {
+    "lifesteal": 0.15
+   },
+   "essence": "blood"
+  },
+  "executioner": {
+   "id": "executioner",
+   "name": "Executioner",
+   "kind": "passive",
+   "desc": "Your strikes finish the wounded. Bonus damage to low targets.",
+   "onHit": {
+    "execute_threshold": 0.3,
+    "execute_bonus": 6.0
+   },
+   "essence": "sin"
+  },
+  "shade_step": {
+   "id": "shade_step",
+   "name": "Shade Step",
+   "kind": "passive",
+   "desc": "The dark quickens you. Movement speed up.",
+   "attrs": {
+    "MOVEMENT_SPEED": 0.04
+   },
+   "essence": "dark"
+  },
+  "brutal_swing": {
+   "id": "brutal_swing",
+   "name": "Brutal Swing",
+   "kind": "passive",
+   "desc": "Sin lends weight to your arm. Attack damage up.",
+   "attrs": {
+    "ATTACK_DAMAGE": 3.0
+   },
+   "essence": "sin"
+  },
+  "undying_heart": {
+   "id": "undying_heart",
+   "name": "Undying Heart",
+   "kind": "passive",
+   "desc": "Your heart refuses to stop. Knockback resistance and toughness.",
+   "attrs": {
+    "KNOCKBACK_RESISTANCE": 0.3,
+    "ARMOR_TOUGHNESS": 4.0
+   },
+   "essence": "doom"
+  },
+  "night_predator": {
+   "id": "night_predator",
+   "name": "Night Predator",
+   "kind": "passive",
+   "desc": "In darkness you are stronger.",
+   "onHit": {
+    "night_bonus": 3.0
+   },
+   "essence": "dark"
+  },
+  "sanguine_armour": {
+   "id": "sanguine_armour",
+   "name": "Sanguine Armour",
+   "kind": "passive",
+   "desc": "Congealed blood plates your body.",
+   "attrs": {
+    "ARMOR": 4.0
+   },
+   "essence": "blood"
+  },
+  "aura_dread": {
+   "id": "aura_dread",
+   "name": "Aura of Dread",
+   "kind": "aura",
+   "desc": "Nearby enemies are slowed and weakened.",
+   "radius": 8,
+   "effects": [
+    {
+     "target": "enemy",
+     "effect": "SLOWNESS",
+     "ticks": 60,
+     "amp": 0
+    },
+    {
+     "target": "enemy",
+     "effect": "WEAKNESS",
+     "ticks": 60,
+     "amp": 0
+    }
+   ],
+   "particles": "SOUL",
+   "essence": "dark"
+  },
+  "aura_sin": {
+   "id": "aura_sin",
+   "name": "Aura of Gluttony",
+   "kind": "aura",
+   "desc": "Your presence saps the will of those nearby.",
+   "radius": 7,
+   "effects": [
+    {
+     "target": "enemy",
+     "effect": "MINING_FATIGUE",
+     "ticks": 80,
+     "amp": 1
+    }
+   ],
+   "particles": "WITCH",
+   "essence": "sin"
+  },
+  "aura_blood": {
+   "id": "aura_blood",
+   "name": "Aura of Vitality",
+   "kind": "aura",
+   "desc": "Your blood essence mends you and nearby allies.",
+   "radius": 8,
+   "effects": [
+    {
+     "target": "ally",
+     "effect": "REGENERATION",
+     "ticks": 60,
+     "amp": 0
+    },
+    {
+     "target": "self",
+     "effect": "REGENERATION",
+     "ticks": 60,
+     "amp": 0
+    }
+   ],
+   "particles": "HEART",
+   "essence": "blood"
+  },
+  "aura_doom": {
+   "id": "aura_doom",
+   "name": "Aura of Doom",
+   "kind": "aura",
+   "desc": "Everything near you begins to end.",
+   "radius": 9,
+   "effects": [
+    {
+     "target": "enemy",
+     "effect": "WITHER",
+     "ticks": 60,
+     "amp": 0
+    },
+    {
+     "target": "enemy",
+     "effect": "SLOWNESS",
+     "ticks": 60,
+     "amp": 1
+    }
+   ],
+   "particles": "SCULK_SOUL",
+   "essence": "doom"
+  },
+  "aura_void": {
+   "id": "aura_void",
+   "name": "Aura of the Void",
+   "kind": "aura",
+   "desc": "Light dies around you. Enemies are blinded and slowed.",
+   "radius": 8,
+   "effects": [
+    {
+     "target": "enemy",
+     "effect": "BLINDNESS",
+     "ticks": 60,
+     "amp": 0
+    },
+    {
+     "target": "enemy",
+     "effect": "SLOWNESS",
+     "ticks": 80,
+     "amp": 0
+    }
+   ],
+   "particles": "REVERSE_PORTAL",
+   "essence": "dark"
+  },
+  "act_shadow_dash": {
+   "id": "act_shadow_dash",
+   "name": "Shadow Dash",
+   "kind": "active",
+   "desc": "Step through the dark to where you are looking.",
+   "cooldown": 8,
+   "payload": {
+    "type": "dash",
+    "distance": 8,
+    "particles": "SOUL"
+   },
+   "essence": "dark"
+  },
+  "act_blink_strike": {
+   "id": "act_blink_strike",
+   "name": "Blink Strike",
+   "kind": "active",
+   "desc": "Teleport behind your target and strike hard.",
+   "cooldown": 14,
+   "payload": {
+    "type": "blink",
+    "distance": 12,
+    "damage": 10
+   },
+   "essence": "dark"
+  },
+  "act_ruin": {
+   "id": "act_ruin",
+   "name": "Ruin",
+   "kind": "active",
+   "desc": "A wave of ending erupts around you, damaging and withering.",
+   "cooldown": 25,
+   "payload": {
+    "type": "nova",
+    "radius": 7,
+    "damage": 12,
+    "effect": [
+     "WITHER",
+     100,
+     1
+    ]
+   },
+   "essence": "doom"
+  },
+  "act_soul_nova": {
+   "id": "act_soul_nova",
+   "name": "Soul Nova",
+   "kind": "active",
+   "desc": "Dark fire bursts outward, knocking enemies back.",
+   "cooldown": 18,
+   "payload": {
+    "type": "nova",
+    "radius": 6,
+    "damage": 8,
+    "knockback": 1.2,
+    "particles": "SOUL_FIRE_FLAME"
+   },
+   "essence": "dark"
+  },
+  "act_blood_pact": {
+   "id": "act_blood_pact",
+   "name": "Blood Pact",
+   "kind": "active",
+   "desc": "Spend your own health to heal far more.",
+   "cooldown": 30,
+   "payload": {
+    "type": "blood_pact",
+    "cost": 6,
+    "heal": 16
+   },
+   "essence": "blood"
+  },
+  "act_siphon": {
+   "id": "act_siphon",
+   "name": "Siphon",
+   "kind": "active",
+   "desc": "Tear life from every enemy around you and take it as your own.",
+   "cooldown": 22,
+   "payload": {
+    "type": "siphon",
+    "radius": 8,
+    "damage": 6,
+    "heal_per_target": 4
+   },
+   "essence": "blood"
+  },
+  "act_gluttony": {
+   "id": "act_gluttony",
+   "name": "Gluttony",
+   "kind": "active",
+   "desc": "Devour the strength of those nearby.",
+   "cooldown": 26,
+   "payload": {
+    "type": "steal_buff",
+    "radius": 7,
+    "effect": [
+     "STRENGTH",
+     300,
+     1
+    ]
+   },
+   "essence": "sin"
+  },
+  "act_fear": {
+   "id": "act_fear",
+   "name": "Wave of Terror",
+   "kind": "active",
+   "desc": "Enemies flee, blinded and slowed.",
+   "cooldown": 20,
+   "payload": {
+    "type": "fear",
+    "radius": 8,
+    "effect": [
+     "BLINDNESS",
+     120,
+     0
+    ]
+   },
+   "essence": "dark"
+  },
+  "act_iron_shield": {
+   "id": "act_iron_shield",
+   "name": "Bulwark",
+   "kind": "active",
+   "desc": "Harden your flesh into a shield of sin.",
+   "cooldown": 28,
+   "payload": {
+    "type": "shield",
+    "absorption": 16,
+    "seconds": 12
+   },
+   "essence": "sin"
+  },
+  "act_quake": {
+   "id": "act_quake",
+   "name": "Earthen Quake",
+   "kind": "active",
+   "desc": "Slam the ground, launching everything nearby upward.",
+   "cooldown": 24,
+   "payload": {
+    "type": "quake",
+    "radius": 7,
+    "damage": 6,
+    "launch": 1.1
+   },
+   "essence": "sin"
+  },
+  "act_execute": {
+   "id": "act_execute",
+   "name": "Sever",
+   "kind": "active",
+   "desc": "Instantly slay a badly wounded target in front of you.",
+   "cooldown": 40,
+   "payload": {
+    "type": "execute",
+    "range": 4,
+    "threshold": 0.35
+   },
+   "essence": "doom"
+  },
+  "act_mark": {
+   "id": "act_mark",
+   "name": "Mark of Doom",
+   "kind": "active",
+   "desc": "Brand a target: it takes far more damage from you.",
+   "cooldown": 30,
+   "payload": {
+    "type": "mark",
+    "range": 16,
+    "seconds": 12,
+    "multiplier": 1.5
+   },
+   "essence": "doom"
+  },
+  "act_storm": {
+   "id": "act_storm",
+   "name": "Blood Storm",
+   "kind": "active",
+   "desc": "Call down a storm of blood around you.",
+   "cooldown": 45,
+   "payload": {
+    "type": "storm",
+    "radius": 8,
+    "damage": 4,
+    "duration": 8,
+    "particles": "DUST_PLUME"
+   },
+   "essence": "blood"
+  },
+  "act_leap": {
+   "id": "act_leap",
+   "name": "Void Leap",
+   "kind": "active",
+   "desc": "Launch yourself high and land without harm.",
+   "cooldown": 16,
+   "payload": {
+    "type": "leap",
+    "power": 1.6,
+    "slow_fall": 200
+   },
+   "essence": "dark"
+  },
+  "act_cleanse": {
+   "id": "act_cleanse",
+   "name": "Purity of Sin",
+   "kind": "active",
+   "desc": "Burn away every negative effect on you.",
+   "cooldown": 35,
+   "payload": {
+    "type": "cleanse"
+   },
+   "essence": "sin"
+  },
+  "act_chain": {
+   "id": "act_chain",
+   "name": "Chain of Damnation",
+   "kind": "active",
+   "desc": "Dark bolts arc between nearby enemies.",
+   "cooldown": 18,
+   "payload": {
+    "type": "chain_bolt",
+    "radius": 8,
+    "targets": 5,
+    "damage": 7
+   },
+   "essence": "dark"
+  },
+  "act_lifedrain": {
+   "id": "act_lifedrain",
+   "name": "Life Drain",
+   "kind": "active",
+   "desc": "Drain a single target's health over time into yourself.",
+   "cooldown": 26,
+   "payload": {
+    "type": "lifesteal_burst",
+    "range": 12,
+    "damage": 10,
+    "heal": 10
+   },
+   "essence": "blood"
+  },
+  "act_shadowstep": {
+   "id": "act_shadowstep",
+   "name": "Shadow Step",
+   "kind": "active",
+   "desc": "Vanish, then reappear further away, unseen.",
+   "cooldown": 20,
+   "payload": {
+    "type": "blink",
+    "distance": 16,
+    "invisible": 100
+   },
+   "essence": "dark"
+  },
+  "fam_imp": {
+   "id": "fam_imp",
+   "name": "Sin Imp",
+   "kind": "familiar",
+   "desc": "A lesser sin made flesh. Fights beside you.",
+   "mob": "VEX",
+   "count": 1,
+   "speed": 0.4,
+   "health": 16,
+   "damage": 5,
+   "essence": "sin"
+  },
+  "fam_blood_hound": {
+   "id": "fam_blood_hound",
+   "name": "Blood Hound",
+   "kind": "familiar",
+   "desc": "A hound of your own blood. Fast and vicious.",
+   "mob": "WOLF",
+   "count": 2,
+   "speed": 0.45,
+   "health": 18,
+   "damage": 5,
+   "essence": "blood"
+  },
+  "fam_void_wisp": {
+   "id": "fam_void_wisp",
+   "name": "Void Wisp",
+   "kind": "familiar",
+   "desc": "A mote of the dark that follows and burns.",
+   "mob": "ALLAY",
+   "count": 1,
+   "speed": 0.5,
+   "health": 14,
+   "damage": 4,
+   "essence": "dark"
+  },
+  "fam_bat_swarm": {
+   "id": "fam_bat_swarm",
+   "name": "Swarm of Night",
+   "kind": "familiar",
+   "desc": "A cloud of dark wings that harasses your enemies.",
+   "mob": "BAT",
+   "count": 4,
+   "speed": 0.6,
+   "health": 8,
+   "damage": 2,
+   "essence": "dark"
+  },
+  "fam_shade": {
+   "id": "fam_shade",
+   "name": "Shade Servant",
+   "kind": "familiar",
+   "desc": "A shadow bound to your will.",
+   "mob": "VEX",
+   "count": 2,
+   "speed": 0.38,
+   "health": 20,
+   "damage": 6,
+   "essence": "dark"
+  },
+  "fam_doom_herald": {
+   "id": "fam_doom_herald",
+   "name": "Herald of Doom",
+   "kind": "familiar",
+   "desc": "An omen given form. It fights like the end of things.",
+   "mob": "VEX",
+   "count": 1,
+   "speed": 0.42,
+   "health": 30,
+   "damage": 9,
+   "essence": "doom"
+  },
+  "util_night_eye": {
+   "id": "util_night_eye",
+   "name": "Eyes of the Dark",
+   "kind": "utility",
+   "desc": "Permanent night vision.",
+   "payload": {
+    "type": "perm_effect",
+    "effect": "NIGHT_VISION"
+   },
+   "essence": "dark"
+  },
+  "util_water_breath": {
+   "id": "util_water_breath",
+   "name": "Breath of the Deep",
+   "kind": "utility",
+   "desc": "Permanent water breathing.",
+   "payload": {
+    "type": "perm_effect",
+    "effect": "WATER_BREATHING"
+   },
+   "essence": "dark"
+  },
+  "util_fire_ward": {
+   "id": "util_fire_ward",
+   "name": "Ember Ward",
+   "kind": "utility",
+   "desc": "Permanent fire resistance.",
+   "payload": {
+    "type": "perm_effect",
+    "effect": "FIRE_RESISTANCE"
+   },
+   "essence": "sin"
+  },
+  "util_feather": {
+   "id": "util_feather",
+   "name": "Feather of Night",
+   "kind": "utility",
+   "desc": "Permanent slow falling.",
+   "payload": {
+    "type": "perm_effect",
+    "effect": "SLOW_FALLING"
+   },
+   "essence": "dark"
+  },
+  "util_haste": {
+   "id": "util_haste",
+   "name": "Unerring Purpose",
+   "kind": "utility",
+   "desc": "Permanent haste.",
+   "payload": {
+    "type": "perm_effect",
+    "effect": "HASTE"
+   },
+   "essence": "dark"
+  },
+  "util_strength": {
+   "id": "util_strength",
+   "name": "Might of Sin",
+   "kind": "utility",
+   "desc": "Permanent strength I.",
+   "payload": {
+    "type": "perm_effect",
+    "effect": "STRENGTH"
+   },
+   "essence": "sin"
+  },
+  "util_regen": {
+   "id": "util_regen",
+   "name": "Blood Renewal",
+   "kind": "utility",
+   "desc": "Permanent regeneration I.",
+   "payload": {
+    "type": "perm_effect",
+    "effect": "REGENERATION"
+   },
+   "essence": "blood"
+  },
+  "util_resistance": {
+   "id": "util_resistance",
+   "name": "Unyielding",
+   "kind": "utility",
+   "desc": "Permanent resistance I.",
+   "payload": {
+    "type": "perm_effect",
+    "effect": "RESISTANCE"
+   },
+   "essence": "doom"
+  },
+  "util_speed": {
+   "id": "util_speed",
+   "name": "Quickened",
+   "kind": "utility",
+   "desc": "Permanent speed I.",
+   "payload": {
+    "type": "perm_effect",
+    "effect": "SPEED"
+   },
+   "essence": "sin"
+  },
+  "util_absorption": {
+   "id": "util_absorption",
+   "name": "Second Skin",
+   "kind": "utility",
+   "desc": "Permanent absorption.",
+   "payload": {
+    "type": "perm_effect",
+    "effect": "ABSORPTION"
+   },
+   "essence": "doom"
+  },
+  "util_vision": {
+   "id": "util_vision",
+   "name": "True Sight",
+   "kind": "utility",
+   "desc": "Permanent glowing on nearby enemies.",
+   "payload": {
+    "type": "glow_enemies",
+    "radius": 16
+   },
+   "essence": "dark"
+  },
+  "util_saturation": {
+   "id": "util_saturation",
+   "name": "Endless Hunger",
+   "kind": "utility",
+   "desc": "You never go hungry.",
+   "payload": {
+    "type": "no_hunger"
+   },
+   "essence": "blood"
+  },
+  "util_breath": {
+   "id": "util_breath",
+   "name": "Tireless Lungs",
+   "kind": "utility",
+   "desc": "Bonus oxygen.",
+   "payload": {
+    "type": "attr",
+    "attr": "OXYGEN_BONUS",
+    "amount": 4.0
+   },
+   "essence": "dark"
+  },
+  "util_range": {
+   "id": "util_range",
+   "name": "Reaching Doom",
+   "kind": "utility",
+   "desc": "Extended reach.",
+   "payload": {
+    "type": "attr",
+    "attr": "BLOCK_INTERACTION_RANGE",
+    "amount": 2.0
+   },
+   "essence": "dark"
+  },
+  "util_jump": {
+   "id": "util_jump",
+   "name": "Leaping Sin",
+   "kind": "utility",
+   "desc": "Higher jumps.",
+   "payload": {
+    "type": "attr",
+    "attr": "JUMP_STRENGTH",
+    "amount": 0.35
+   },
+   "essence": "sin"
+  },
+  "util_fall": {
+   "id": "util_fall",
+   "name": "Unbroken Landing",
+   "kind": "utility",
+   "desc": "Greatly reduced fall damage.",
+   "payload": {
+    "type": "attr",
+    "attr": "SAFE_FALL_DISTANCE",
+    "amount": 8.0
+   },
+   "essence": "dark"
+  }
+ },
+ "stones": [
+  {
+   "id": "umbral",
+   "name": "Umbral Awakening Stone",
+   "colour": "#4a3a6b",
+   "rarity": "rare",
+   "desc": "Cold to the touch. It drinks the light around it.",
+   "pool": [
+    "aura_dread",
+    "fam_shade",
+    "act_iron_shield",
+    "act_storm",
+    "undying_heart",
+    "util_jump"
+   ]
+  },
+  {
+   "id": "crimson",
+   "name": "Crimson Awakening Stone",
+   "colour": "#a01b1b",
+   "rarity": "rare",
+   "desc": "Warm, and faintly wet. It beats like something alive.",
+   "pool": [
+    "aura_blood",
+    "fam_blood_hound",
+    "act_leap",
+    "act_cleanse",
+    "undying_heart",
+    "util_vision"
+   ]
+  },
+  {
+   "id": "gluttonous",
+   "name": "Gluttonous Awakening Stone",
+   "colour": "#8a1f3d",
+   "rarity": "rare",
+   "desc": "It is never full. It is never satisfied.",
+   "pool": [
+    "aura_sin",
+    "fam_imp",
+    "act_shadow_dash",
+    "act_lifedrain",
+    "undying_heart",
+    "util_water_breath"
+   ]
+  },
+  {
+   "id": "predator",
+   "name": "Predator's Awakening Stone",
+   "colour": "#5c1a2e",
+   "rarity": "epic",
+   "desc": "It smells of blood and appetite. Something has already fed.",
+   "pool": [
+    "aura_sin",
+    "fam_imp",
+    "act_shadowstep",
+    "act_siphon",
+    "undying_heart",
+    "util_breath"
+   ]
+  },
+  {
+   "id": "void",
+   "name": "Void-Touched Awakening Stone",
+   "colour": "#3a1a5c",
+   "rarity": "epic",
+   "desc": "There is a hole in it. Not a crack - a hole, in the world.",
+   "pool": [
+    "aura_dread",
+    "fam_void_wisp",
+    "act_iron_shield",
+    "act_storm",
+    "undying_heart",
+    "util_jump"
+   ]
+  },
+  {
+   "id": "executioner",
+   "name": "Executioner's Awakening Stone",
+   "colour": "#3d0a14",
+   "rarity": "epic",
+   "desc": "It knows what it is for. It has been waiting to be used.",
+   "pool": [
+    "aura_doom",
+    "fam_doom_herald",
+    "act_blink_strike",
+    "act_cleanse",
+    "bloodthirst",
+    "util_feather"
+   ]
+  },
+  {
+   "id": "nightfall",
+   "name": "Nightfall Awakening Stone",
+   "colour": "#241a3d",
+   "rarity": "epic",
+   "desc": "The moment the sun gives up, held in stone.",
+   "pool": [
+    "aura_dread",
+    "fam_shade",
+    "act_cleanse",
+    "act_lifedrain",
+    "undying_heart",
+    "util_strength"
+   ]
+  },
+  {
+   "id": "sanguine",
+   "name": "Sanguine Awakening Stone",
+   "colour": "#7a0f1a",
+   "rarity": "epic",
+   "desc": "Blood has been spilled on this stone. Recently.",
+   "pool": [
+    "aura_blood",
+    "fam_blood_hound",
+    "act_fear",
+    "act_iron_shield",
+    "undying_heart",
+    "util_night_eye"
+   ]
+  },
+  {
+   "id": "wrathful",
+   "name": "Wrathful Awakening Stone",
+   "colour": "#8f1d0f",
+   "rarity": "rare",
+   "desc": "Hot to the touch, and getting hotter.",
+   "pool": [
+    "aura_sin",
+    "fam_imp",
+    "act_leap",
+    "act_storm",
+    "undying_heart",
+    "util_range"
+   ]
+  },
+  {
+   "id": "steadfast",
+   "name": "Steadfast Awakening Stone",
+   "colour": "#8a6a2a",
+   "rarity": "uncommon",
+   "desc": "Heavy, dull, and utterly immovable.",
+   "pool": [
+    "aura_doom",
+    "fam_doom_herald",
+    "act_shadow_dash",
+    "act_cleanse",
+    "crimson_vitality",
+    "util_vision"
+   ]
+  },
+  {
+   "id": "abyssal",
+   "name": "Abyssal Awakening Stone",
+   "colour": "#0d2030",
+   "rarity": "epic",
+   "desc": "Pulled from somewhere very deep, and very dark, and very cold.",
+   "pool": [
+    "aura_dread",
+    "fam_void_wisp",
+    "act_cleanse",
+    "act_lifedrain",
+    "undying_heart",
+    "util_strength"
+   ]
+  },
+  {
+   "id": "feathered",
+   "name": "Feathered Awakening Stone",
+   "colour": "#5aa8c8",
+   "rarity": "uncommon",
+   "desc": "Lighter than it has any right to be.",
+   "pool": [
+    "aura_void",
+    "fam_bat_swarm",
+    "act_gluttony",
+    "act_siphon",
+    "undying_heart",
+    "util_fire_ward"
+   ]
+  },
+  {
+   "id": "twin_fang",
+   "name": "Twin Fang Awakening Stone",
+   "colour": "#6b1f1f",
+   "rarity": "epic",
+   "desc": "Two marks, side by side, like a bite that went all the way through.",
+   "pool": [
+    "aura_blood",
+    "fam_blood_hound",
+    "act_blink_strike",
+    "act_quake",
+    "undying_heart",
+    "util_fall"
+   ]
+  },
+  {
+   "id": "apex",
+   "name": "Apex Awakening Stone",
+   "colour": "#6b5a1f",
+   "rarity": "epic",
+   "desc": "Every predator that ever lived, compressed into a single point.",
+   "pool": [
+    "aura_doom",
+    "fam_doom_herald",
+    "act_chain",
+    "act_cleanse",
+    "sanguine_armour",
+    "util_feather"
+   ]
+  },
+  {
+   "id": "insatiable",
+   "name": "Insatiable Awakening Stone",
+   "colour": "#4a0f2a",
+   "rarity": "epic",
+   "desc": "It has eaten other awakening stones. You can feel them in there.",
+   "pool": [
+    "aura_sin",
+    "fam_imp",
+    "act_fear",
+    "act_lifedrain",
+    "undying_heart",
+    "util_haste"
+   ]
+  },
+  {
+   "id": "doomsday",
+   "name": "Doomsday Awakening Stone",
+   "colour": "#7b2ff7",
+   "rarity": "legendary",
+   "desc": "It does not glow. It does not hum. Everything near it simply starts to end.",
+   "pool": [
+    "aura_doom",
+    "fam_doom_herald",
+    "act_leap",
+    "act_iron_shield",
+    "crimson_vitality",
+    "util_night_eye"
+   ]
+  }
+ ]
+}

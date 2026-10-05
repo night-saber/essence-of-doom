@@ -1,0 +1,18 @@
+name: EssenceOfDoom
+version: '${version}'
+main: com.essence.EssencePlugin
+api-version: '1.21'
+description: Essences, awakening stones and the Doom confluence - an HWFWM-inspired RPG system.
+author: Hermes
+commands:
+  essence:
+    description: Essence and awakening commands.
+    usage: /essence <essences|awaken|abilities|stone|doom|reset|reload>
+    aliases: [ess, hwfwm]
+permissions:
+  essence.use:
+    description: Use essence features.
+    default: true
+  essence.admin:
+    description: Give essences, stones and reset players.
+    default: op

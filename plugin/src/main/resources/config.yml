@@ -1,0 +1,20 @@
+# EssenceOfDoom
+# Essences, awakening stones and the Doom confluence.
+
+# Allow abilities to damage other players.
+allow-pvp: false
+
+# Broadcast an action-bar summary when a player awakens something.
+announce-awakening: true
+
+# The Doom confluence requires dark + sin + blood together.
+doom-requires-all-three: true
+
+# How often attribute passives are re-checked (seconds).
+passive-refresh-seconds: 5
+
+# Give a starter awakening stone to a player on first join.
+grant-starter-stone: true
+
+# Global scaling on ability damage. 1.0 is as written in essences.json.
+ability-damage-multiplier: 1.0
